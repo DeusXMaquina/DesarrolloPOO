@@ -1,0 +1,20 @@
+.card-info {
+  margin: 10px;
+}
+
+.badge {
+  left: 20%;
+}
+
+.table {
+  width: 35rem;
+}
+
+.subject-row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.flex-table {
+  display: flex;
+}

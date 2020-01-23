@@ -1,0 +1,112 @@
+{
+  "Alumno": {
+    "nombre": "Pablo",
+    "apeidoPaterno": "Altamirano",
+    "apeidoMaterno": "Arce",
+    "edad": "29 Años",
+    "carrera": "Ingenieria en Sistemas Computacionales",
+    "totalMateriasCarrera": "59"
+  },
+  "Materias": [
+    {
+      "nombre": "Principios y procedimientos contables",
+      "calificacion": 100
+    }, {
+      "nombre": "Legislacion en informatica",
+      "calificacion": 70
+    }, {
+      "nombre": "Prospectia e innovacion",
+      "calificacion": 70
+    }, {
+      "nombre": "Desarrollo de habilidades universitarias",
+      "calificacion": 90
+    }, {
+      "nombre": "El mundo y la globalizacion",
+      "calificacion": 70
+    }, {
+      "nombre": "Los valores y derechos humanos",
+      "calificacion": 80
+    }, {
+      "nombre": "Antropologia filosofica",
+      "calificacion": 80
+    }, {
+      "nombre": "Taller de integracion curricular I",
+      "calificacion": 60
+    }, {
+      "nombre": "Taller de integracion curricular II",
+      "calificacion": 90
+    }, {
+      "nombre": "Programacion Estructurada",
+      "calificacion": 70
+    }, {
+      "nombre": "Desarrolo de Software Estructurado",
+      "calificacion": 100
+    }, {
+      "nombre": "Introduccion a la Computacion",
+      "calificacion": 100
+    }, {
+      "nombre": "Estructura de datos y algoritmos",
+      "calificacion": 90
+    }, {
+      "nombre": "Software de sistemas",
+      "calificacion": 100
+    }, {
+      "nombre": "Analisis y Diseño Estructurado de Sistemas",
+      "calificacion": 80
+    }, {
+      "nombre": "Analisis y Diseño Orientado a Objetos",
+      "calificacion": 100
+    }, {
+      "nombre": "Planeacion de Proyectos de Software",
+      "calificacion": 100
+    }, {
+      "nombre": "Implementacion de Centros de Computo",
+      "calificacion": 90
+    }, {
+      "nombre": "Graficacion por computadora",
+      "calificacion": 80
+    }, {
+      "nombre": "Programacion Orientada a Objetos",
+      "calificacion": 80
+    }, {
+      "nombre": "Base de Datos",
+      "calificacion": 90
+    }, {
+      "nombre": "Auditoria de sistemas",
+      "calificacion": 100
+    }, {
+      "nombre": "Fundamentos de redes",
+      "calificacion": 100
+    }, {
+      "nombre": "Circuitos Logicos",
+      "calificacion": 100
+    }, {
+      "nombre": "Probabilidad y Estadistica",
+      "calificacion": 70
+    }, {
+      "nombre": "Matematicas Discretas",
+      "calificacion": 70
+    }, {
+      "nombre": "Matematicas Basicas",
+      "calificacion": 90
+    }, {
+      "nombre": "Algebra Lineal",
+      "calificacion": 60
+    }, {
+      "nombre": "Metodos Formales",
+      "calificacion": 100
+    }, {
+      "nombre": "Desarrolo de software multimedia",
+      "calificacion": 100
+    }, {
+      "nombre": "Fenomenologia de la trascendencia",
+      "calificacion": 90
+    }, {
+      "nombre": "La realizacion del hombre: Una propuesta Universitaria",
+      "calificacion": 90
+    }, {
+      "nombre": "Tutoria Institucional I",
+      "calificacion": 100
+    }
+  ]
+}
