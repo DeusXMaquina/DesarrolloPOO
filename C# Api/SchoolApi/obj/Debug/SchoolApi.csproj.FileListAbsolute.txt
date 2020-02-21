@@ -82,3 +82,6 @@ C:\Users\altamipa\Documents\Projects\React Projects\SchoolProject\C# Api\SchoolA
 C:\Users\altamipa\Documents\Projects\React Projects\SchoolProject\C# Api\SchoolApi\obj\Debug\SchoolApi.csproj.CopyComplete
 C:\Users\altamipa\Documents\Projects\React Projects\SchoolProject\C# Api\SchoolApi\obj\Debug\SchoolApi.dll
 C:\Users\altamipa\Documents\Projects\React Projects\SchoolProject\C# Api\SchoolApi\obj\Debug\SchoolApi.pdb
+C:\Users\altamipa\Documents\Projects\React Projects\SchoolProject\C# Api\SchoolApi\bin\System.Web.Cors.dll
+C:\Users\altamipa\Documents\Projects\React Projects\SchoolProject\C# Api\SchoolApi\bin\System.Web.Http.Cors.dll
+C:\Users\altamipa\Documents\Projects\React Projects\SchoolProject\C# Api\SchoolApi\bin\System.Web.Http.Cors.xml

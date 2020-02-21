@@ -18,10 +18,6 @@ namespace SchoolApi.Controllers
             edad="29 Años"});
         }
         // GET: api/Alumnos
-        /// <summary>
-        /// Get Information from the student
-        /// </summary>
-        /// <returns>A list of Students</returns>
         public List<Alumnos> Get()
         {
             return alumno;
