@@ -13,28 +13,45 @@ const capitalize = (word:string) => {
 const materiasporCarrera = Number(cargaAcademica.Alumno.totalMateriasCarrera)
 class StudyTable extends Component <{}, {Alumno:IAlumno, Materias:IMaterias[]}> {
 
+  componentWillMount() {
+    fetch('https://localhost:44361/api/Alumn')
+    .then (res => res.json())
+    .then(data =>{
+      this.setState({Alumno : data[0]})
+    })
+  }
+
   constructor (props:any) { 
     super(props)
     this.state = {
-      Alumno: cargaAcademica.Alumno,
+      Alumno: {
+        nombre: '',
+        apeidoPaterno: '',
+        apeidoMaterno: '',
+        edad: '',
+        carrera: '',
+        totalMateriasCarrera: ''
+      },
       Materias: cargaAcademica.Materias
     }
   }
 
   render () {
+    console.log('Esto es alumno: ', this.state.Alumno)
+
     const cargaMaterias = () => {
-      return this.state.Materias.map( materia => {
+      return this.state.Materias.map( (materia,index) => {
         let color = {backgroundColor: materia.calificacion >= 80 ? 'green' : materia.calificacion >= 60 ? '#F3C702' : 'red'}
-        return <li className='subject-row list-group-item d-flex justify-content between align-items-center'><span>{materia.nombre}</span>
+        return <li key={index} className='subject-row list-group-item d-flex justify-content between align-items-center'><span>{materia.nombre}</span>
       <div className='badge badge-primary badge-pill school-badge' style={color}>{materia.calificacion}</div>
       </li>
       })
     }
 
     const cargaInformacionAlumno = () => {
-      return Object.keys(this.state.Alumno).map ((k:any) => {
+      return Object.keys(this.state.Alumno).map ((k:any, index:number) => {
         if(k === 'edad')
-        return <div>{capitalize(k) +': ' +this.state.Alumno[k]}<br/></div>
+        return <div key={index}>{capitalize(k) +': ' +this.state.Alumno[k]}<br/></div>
       })
     }
 
