@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import SchoolNavbar from '../../Components/Navbar/Navbar'
 import Card from '../../Components/Card/Card'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
+import Main from '../Main/Main'
 
 
 
@@ -8,11 +10,12 @@ class Login extends Component {
   state = {}
 
   render() {
-    return <div>
+    return <Router>
+      <div>
         <SchoolNavbar/>
-        <Card/>
-        
+        <Card/>  
       </div>
+    </Router>
   }
 }
 

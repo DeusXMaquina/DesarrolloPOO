@@ -1,25 +1,14 @@
 import React, { Component } from 'react'
 import './studytable.css'
-import * as cargaAcademica from './carga.json'
+//import * as cargaAcademica from './carga.json'
 import { IAlumno, IMaterias } from './StudyTableInterfaces'
 import WaterGraphic from '../WaterGraphic/WaterGraphic'
-
-console.log(cargaAcademica.Materias)
 
 const capitalize = (word:string) => {
   return word.replace(word[0],word[0].toUpperCase())
 }
-
-const materiasporCarrera = Number(cargaAcademica.Alumno.totalMateriasCarrera)
+const matricula = 1
 class StudyTable extends Component <{}, {Alumno:IAlumno, Materias:IMaterias[]}> {
-
-  componentWillMount() {
-    fetch('https://localhost:44361/api/Alumn')
-    .then (res => res.json())
-    .then(data =>{
-      this.setState({Alumno : data[0]})
-    })
-  }
 
   constructor (props:any) { 
     super(props)
@@ -30,19 +19,33 @@ class StudyTable extends Component <{}, {Alumno:IAlumno, Materias:IMaterias[]}> 
         apeidoMaterno: '',
         edad: '',
         carrera: '',
-        totalMateriasCarrera: ''
+        materias: ''
       },
-      Materias: cargaAcademica.Materias
+      Materias: []
     }
+  }
+
+  componentWillMount() {
+    fetch(`https://localhost:44361/api/Alumn/${matricula}`)
+    .then (res => res.json())
+    .then(data =>{
+      this.setState({Alumno : data[0]})
+    })
+    fetch(`https://localhost:44361/api/MateriasCursadas/${matricula}`)
+    .then(res => res.json())
+    .then(data => {
+      this.setState({Materias : data})
+    })
   }
 
   render () {
     console.log('Esto es alumno: ', this.state.Alumno)
+    console.log('Esto se materia: ', this.state.Materias)
 
     const cargaMaterias = () => {
       return this.state.Materias.map( (materia,index) => {
         let color = {backgroundColor: materia.calificacion >= 80 ? 'green' : materia.calificacion >= 60 ? '#F3C702' : 'red'}
-        return <li key={index} className='subject-row list-group-item d-flex justify-content between align-items-center'><span>{materia.nombre}</span>
+        return <li key={index} className='subject-row list-group-item d-flex justify-content between align-items-center'><span>{materia.nombreMateria}</span>
       <div className='badge badge-primary badge-pill school-badge' style={color}>{materia.calificacion}</div>
       </li>
       })
@@ -57,14 +60,14 @@ class StudyTable extends Component <{}, {Alumno:IAlumno, Materias:IMaterias[]}> 
 
     const cargaInformacionCarrera = () => {
       let promedio = 0
-      let totalMaterias = 0
+      let totalMaterias:number = 0
       this.state.Materias.map( materia => {
         promedio += materia.calificacion
         totalMaterias++
       })
       return <div>
         Promedio del Alumno: {(promedio/totalMaterias).toFixed()}<br/>
-        Porcentaje de la Carrera: {((totalMaterias/materiasporCarrera)*100).toFixed()} %
+        Porcentaje de la Carrera: {((totalMaterias/Number(this.state.Alumno.materias))*100).toFixed()} %
       </div>
     }
     
@@ -78,11 +81,6 @@ class StudyTable extends Component <{}, {Alumno:IAlumno, Materias:IMaterias[]}> 
             <ul className='table'>
             {cargaMaterias()}
             </ul>
-            <div>
-            <ul className='table'>
-            {cargaMaterias()}
-            </ul>
-            </div>
           </div>
         </div>
       </div>

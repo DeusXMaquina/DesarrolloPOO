@@ -4,10 +4,10 @@ export interface IAlumno {
     apeidoMaterno: string;
     edad: string;
     carrera: string;
-    totalMateriasCarrera: string;
+    materias: string;
   }
 
 export interface IMaterias {
-  nombre: string;
+  nombreMateria: string;
   calificacion: number;
 }
