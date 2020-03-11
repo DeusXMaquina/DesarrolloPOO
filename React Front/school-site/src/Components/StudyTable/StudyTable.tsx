@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import './studytable.css'
 //import * as cargaAcademica from './carga.json'
 import { IAlumno, IMaterias } from './StudyTableInterfaces'
-import WaterGraphic from '../WaterGraphic/WaterGraphic'
 
 const capitalize = (word:string) => {
   return word.replace(word[0],word[0].toUpperCase())
