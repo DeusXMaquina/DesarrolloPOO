@@ -6,9 +6,11 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Data.SqlClient;
+using System.Web.Http.Cors;
 
 namespace SchoolApi.Controllers
 {
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class MateriasCursadasController : ApiController
     {
         private string conString = "Data Source=FLDLAEFBSR;Database=SchoolProject;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";

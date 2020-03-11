@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import './card.css'
 import Main from '../../Pages/Main/Main'
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
+import { BrowserRouter as Router, Link, Switch, Route } from 'react-router-dom'
 
 class Card extends Component {
 
@@ -32,6 +32,11 @@ class Card extends Component {
         </form>
       </div>
     </div>
+    <Switch>
+      <Route path='/main'>
+        <Main/>
+      </Route>
+    </Switch>
     </Router>
   }
 }
