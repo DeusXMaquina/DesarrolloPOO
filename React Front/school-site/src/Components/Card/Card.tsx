@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import './card.css'
 import Main from '../../Pages/Main/Main'
-import { BrowserRouter as Router, Link, Switch, Route } from 'react-router-dom'
+import { BrowserRouter as Router, NavLink, Switch, Route } from 'react-router-dom'
 
 class Card extends Component {
 
@@ -14,12 +14,14 @@ class Card extends Component {
       if (matricula.value === null){
         matricula.value = 'Valor incorrecto'
       }
-      else
-      console.log('Esto es matricula: ', matricula.value)
+      else if (typeof matricula.value === 'number')
+      return matricula.value
+      else return null
     }
+    let matricula:number = 1
 
     return <Router>
-    <div className='card border-primary mb-3'>
+    <div className='card-component card border-primary mb-3'>
       <div className='card-header'>Login Info</div>
       <div className='card-body text-primary'>
         <form>
@@ -28,13 +30,13 @@ class Card extends Component {
               <input id='miMatricula' type='text' className='form-control' placeholder='Matricula'></input>
             </div>
           </div>
-          <Link className='btn btn-outline-primary lg-btn' to='/main' type='button' onClick={obtenerMatricula}>Search</Link>
+          <NavLink className='btn btn-outline-primary lg-btn' to='/StudentInformation' type='button' onClick={matricula= obtenerMatricula()}>Search</NavLink>
         </form>
       </div>
     </div>
     <Switch>
-      <Route path='/main'>
-        <Main/>
+      <Route path='/StudentInformation'>
+        <Main matricula={matricula}/>
       </Route>
     </Switch>
     </Router>

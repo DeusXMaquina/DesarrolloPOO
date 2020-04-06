@@ -15,7 +15,7 @@ namespace SchoolAPIDB.Controllers
         public List<StudentModel> Get(int id)
         {
             using (SqlConnection connection = new SqlConnection(conString.connectionString))
-            using (SqlCommand cmd = new SqlCommand($"SELECT * FROM studentInformation({id})", connection)) 
+            using (SqlCommand cmd = new SqlCommand($"SELECT id, name, lastname, secondlastname, age, career, courses FROM studentInformation({id})", connection)) 
             {
                 connection.Open();
                 using (SqlDataReader reader = cmd.ExecuteReader()) 
@@ -30,9 +30,9 @@ namespace SchoolAPIDB.Controllers
                                 Name = reader.GetString(reader.GetOrdinal("name")),
                                 LastName = reader.GetString(reader.GetOrdinal("lastname")),
                                 SecondLastName = reader.GetString(reader.GetOrdinal("secondlastname")),
-                                age = reader.GetString(reader.GetOrdinal("age")),
-                                career = reader.GetString(reader.GetOrdinal("career")),
-                                numberOfCourses = reader.GetInt32(reader.GetOrdinal("courses"))
+                                Age = reader.GetString(reader.GetOrdinal("age")),
+                                Career = reader.GetString(reader.GetOrdinal("career")),
+                                NumberOfCourses = reader.GetInt32(reader.GetOrdinal("courses"))
                             });
                         }
                     }
