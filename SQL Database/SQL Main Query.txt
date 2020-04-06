@@ -1,0 +1,258 @@
+CREATE DATABASE SchoolAPIDB
+USE SchoolAPIDB
+
+
+CREATE TABLE careers (
+    id INT NOT NULL PRIMARY KEY IDENTITY (1,1),
+    career VARCHAR(255) NOT NULL
+)
+
+INSERT INTO careers VALUES ('Administracion e Innovacion de Negocios')
+INSERT INTO careers VALUES ('Contaduria Fiscal y Finanzas')
+INSERT INTO careers VALUES ('Comercia y Logistica Internacional')
+INSERT INTO careers VALUES ('Mercadotecnia y Diseño de Marca')
+
+INSERT INTO careers VALUES ('Ingenieria en Gestion de la cadena de suministro')
+INSERT INTO careers VALUES ('Ingenieria en Sistemas Computacionales')
+INSERT INTO careers VALUES ('Ingenieria Industrial')
+
+INSERT INTO careers VALUES ('Derecho')
+INSERT INTO careers VALUES ('Ciencias y Tecnicas de la Comunicacion')
+INSERT INTO careers VALUES ('Educacion e Innovacion')
+
+--courses--------------------------------------------------------------------
+
+CREATE TABLE courses (
+    id INT NOT NULL PRIMARY KEY IDENTITY (1,1),
+    course VARCHAR (255)
+)
+
+INSERT INTO courses VALUES ('Administración Estratégica') --1
+INSERT INTO courses VALUES ('Desarrollo de Oportunidades I') --2
+INSERT INTO courses VALUES ('Desarrollo de Oportunidades II') --3
+INSERT INTO courses VALUES ('Costos y Presupuestos') --4
+INSERT INTO courses VALUES ('Principios y Procedimientos Contables') --5
+INSERT INTO courses VALUES ('Legislación en Informática') --6
+INSERT INTO courses VALUES ('Prospectiva e Innovación') --7
+INSERT INTO courses VALUES ('Desarrollo de habilidades Universitarias') --8
+INSERT INTO courses VALUES ('El mundo y la Globalizacion') --9
+INSERT INTO courses VALUES ('Los Valores y Derechos Humanos') --10
+
+INSERT INTO courses VALUES ('Antropología Filosófica') --11
+INSERT INTO courses VALUES ('Taller de Integración Curricular I') --12
+INSERT INTO courses VALUES ('Taller de Integración Curricular II') --13
+INSERT INTO courses VALUES ('Taller de Integración Curricular III') --14
+INSERT INTO courses VALUES ('Programación Estructurada') --15
+INSERT INTO courses VALUES ('Desarrollo de Software Estructurado') --16
+INSERT INTO courses VALUES ('Introducción a la computación') --17
+INSERT INTO courses VALUES ('Estructura de datos y algoritmos') --18
+INSERT INTO courses VALUES ('Software de sistemas') --19
+INSERT INTO courses VALUES ('Prueba y Mantenimiento') --20
+
+INSERT INTO courses VALUES ('Proceso de Software') --21
+INSERT INTO courses VALUES ('Calidad de Software') --22
+INSERT INTO courses VALUES ('Análisis de Diseño Estructurado de Sistemas') --23
+INSERT INTO courses VALUES ('Análisis y Diseño Orientado a Objetos') --24
+INSERT INTO courses VALUES ('Minería de Datos y Datawarehouse') --25
+INSERT INTO courses VALUES ('Sistemas Expertos') --26
+INSERT INTO courses VALUES ('Desarrollo de Software Orientado a Objetos') --27
+INSERT INTO courses VALUES ('Planeacion de Proyectos de Software Orientado a Objetos') --28
+INSERT INTO courses VALUES ('Programación Visual y por Eventos') --29
+INSERT INTO courses VALUES ('Implementación de Centros de Computo') --30
+
+INSERT INTO courses VALUES ('Manejadores de Base de Datos') --31
+INSERT INTO courses VALUES ('Administración de Sistemas Operativos') --32
+INSERT INTO courses VALUES ('Graficación por Computadora') --33
+INSERT INTO courses VALUES ('Tópicos de Actualidad en Sistemas Computacionales') --34
+INSERT INTO courses VALUES ('Base de datos Distribuidas') --35
+INSERT INTO courses VALUES ('Negocios Electrónicos') --36
+INSERT INTO courses VALUES ('Prácticas de Vinculación en Sistemas Computacionales') --37
+INSERT INTO courses VALUES ('Programación Orientada a Objetos') --38
+INSERT INTO courses VALUES ('Programación de Internet e Intranet') --39
+INSERT INTO courses VALUES ('Sistemas Operativos') --40
+
+INSERT INTO courses VALUES ('Base de Datos') --41
+INSERT INTO courses VALUES ('Auditoría de Sistemas') --42
+INSERT INTO courses VALUES ('Fundamentos de Redes') --43
+INSERT INTO courses VALUES ('Redes y Tecnología de Ruteo') --44
+INSERT INTO courses VALUES ('Circuitos Lógicos') --45
+INSERT INTO courses VALUES ('Probabilidad y Estadpistica') --46
+INSERT INTO courses VALUES ('Lógica') --47
+INSERT INTO courses VALUES ('Matemáticas Discretas') --48
+INSERT INTO courses VALUES ('Matemáticas Básicas') --49
+INSERT INTO courses VALUES ('Algebra Lineal') --50
+
+INSERT INTO courses VALUES ('Métodos Formales') --51
+INSERT INTO courses VALUES ('Desarrollo de Software Multimedia') --52
+INSERT INTO courses VALUES ('Fenomenología de la Trascendencia') --53
+INSERT INTO courses VALUES ('La realizacíon del hombre: Una propuesta Universitaria') --54
+INSERT INTO courses VALUES ('Tutoría Institucional para Ingeniero en Sistemas Computacionales I') --55
+INSERT INTO courses VALUES ('Tutoría Institucional para Ingeniero en Sistemas Computacionales II') --56
+INSERT INTO courses VALUES ('Tutoría Institucional para Ingeniero en Sistemas Computacionales III') --57
+INSERT INTO courses VALUES ('Tutoría Institucional para Ingeniero en Sistemas Computacionales IV') --58
+INSERT INTO courses VALUES ('Taller de Orientacíon Ceneval') --59
+
+
+--plan de estudios----------------------------------------------------------------
+
+CREATE TABLE curriculum (
+    id INT NOT NULL PRIMARY KEY IDENTITY (1,1),
+    idCareer INT NOT NULL FOREIGN KEY REFERENCES careers (id),
+    idCourse INT NOT NULL FOREIGN KEY REFERENCES courses (id)
+)
+
+INSERT INTO curriculum VALUES ('6','1')
+INSERT INTO curriculum VALUES ('6','2')
+INSERT INTO curriculum VALUES ('6','3')
+INSERT INTO curriculum VALUES ('6','4')
+INSERT INTO curriculum VALUES ('6','5')
+INSERT INTO curriculum VALUES ('6','6')
+INSERT INTO curriculum VALUES ('6','7')
+INSERT INTO curriculum VALUES ('6','8')
+INSERT INTO curriculum VALUES ('6','9')
+INSERT INTO curriculum VALUES ('6','10')
+
+INSERT INTO curriculum VALUES ('6','11')
+INSERT INTO curriculum VALUES ('6','12')
+INSERT INTO curriculum VALUES ('6','13')
+INSERT INTO curriculum VALUES ('6','14')
+INSERT INTO curriculum VALUES ('6','15')
+INSERT INTO curriculum VALUES ('6', '16')
+INSERT INTO curriculum VALUES ('6', '17')
+INSERT INTO curriculum VALUES ('6', '18')
+INSERT INTO curriculum VALUES ('6', '19')
+INSERT INTO curriculum VALUES ('6', '20')
+
+INSERT INTO curriculum VALUES ('6', '21')
+INSERT INTO curriculum VALUES ('6', '22')
+INSERT INTO curriculum VALUES ('6', '23')
+INSERT INTO curriculum VALUES ('6', '24')
+INSERT INTO curriculum VALUES ('6', '25')
+INSERT INTO curriculum VALUES ('6', '26')
+INSERT INTO curriculum VALUES ('6', '27')
+INSERT INTO curriculum VALUES ('6', '28')
+INSERT INTO curriculum VALUES ('6', '29')
+INSERT INTO curriculum VALUES ('6', '30')
+
+INSERT INTO curriculum VALUES ('6', '31')
+INSERT INTO curriculum VALUES ('6', '32')
+INSERT INTO curriculum VALUES ('6', '33')
+INSERT INTO curriculum VALUES ('6', '34')
+INSERT INTO curriculum VALUES ('6', '35')
+INSERT INTO curriculum VALUES ('6', '36')
+INSERT INTO curriculum VALUES ('6', '37')
+INSERT INTO curriculum VALUES ('6', '38')
+INSERT INTO curriculum VALUES ('6', '39')
+INSERT INTO curriculum VALUES ('6', '40')
+
+INSERT INTO curriculum VALUES ('6', '41')
+INSERT INTO curriculum VALUES ('6', '42')
+INSERT INTO curriculum VALUES ('6', '43')
+INSERT INTO curriculum VALUES ('6', '44')
+INSERT INTO curriculum VALUES ('6', '45')
+INSERT INTO curriculum VALUES ('6', '46')
+INSERT INTO curriculum VALUES ('6', '47')
+INSERT INTO curriculum VALUES ('6', '48')
+INSERT INTO curriculum VALUES ('6', '49')
+INSERT INTO curriculum VALUES ('6', '50')
+
+INSERT INTO curriculum VALUES ('6', '51')
+INSERT INTO curriculum VALUES ('6', '52')
+INSERT INTO curriculum VALUES ('6', '53')
+INSERT INTO curriculum VALUES ('6', '54')
+INSERT INTO curriculum VALUES ('6', '55')
+INSERT INTO curriculum VALUES ('6', '56')
+INSERT INTO curriculum VALUES ('6', '57')
+INSERT INTO curriculum VALUES ('6', '58')
+INSERT INTO curriculum VALUES ('6', '59')
+
+
+--student------------------------------------------------------------------------
+
+CREATE TABLE student (
+    id INT NOT NULL PRIMARY KEY IDENTITY (1,1),
+    name VARCHAR (255) NOT NULL,
+    lastName VARCHAR (255) NOT NULL,
+    secondLastName VARCHAR (255) NOT NULL,
+    age INT NOT NULL,
+    idCareer INT NOT NULL FOREIGN KEY REFERENCES careers (id)
+)
+
+INSERT INTO student VALUES ('Pablo','Altamirano','Arce',29,6)
+INSERT INTO student VALUES ('Pedro','Perez','Prado',31,6)
+INSERT INTO student VALUES ('Alejandra', 'Allar', 'Gonzalez', 29, 6)
+INSERT INTO student VALUES ('Sofia', 'Ruiz', 'Sahagun', 31, 6)
+INSERT INTO student VALUES ('Carlos', 'Altamirano', 'Arce', 27, 1)
+
+--grades-----------------------------------------------------------------
+
+CREATE TABLE grades (
+    id INT NOT NULL PRIMARY KEY IDENTITY (1,1),
+    idStudent INT NOT NULL FOREIGN KEY REFERENCES student (id),
+    idCourse INT NOT NULL FOREIGN KEY REFERENCES courses (id),
+    grade INT NOT NULL
+)
+
+INSERT INTO grades VALUES ('1','5','100')
+INSERT INTO grades VALUES ('1','6','70')
+INSERT INTO grades VALUES ('1','7','70')
+INSERT INTO grades VALUES ('1','8','90')
+INSERT INTO grades VALUES ('1','9','70')
+
+INSERT INTO grades VALUES ('1','10','80')
+INSERT INTO grades VALUES ('1','11','80')
+INSERT INTO grades VALUES ('1','12','60')
+INSERT INTO grades VALUES ('1','13','90')
+INSERT INTO grades VALUES ('1','15','70')
+
+INSERT INTO grades VALUES ('1','16','100')
+INSERT INTO grades VALUES ('1','17','100')
+INSERT INTO grades VALUES ('1','18','90')
+INSERT INTO grades VALUES ('1','19','100')
+INSERT INTO grades VALUES ('1','23','80')
+
+INSERT INTO grades VALUES ('1','24','100')
+INSERT INTO grades VALUES ('1','28','100')
+INSERT INTO grades VALUES ('1','30','90')
+INSERT INTO grades VALUES ('1','33','80')
+INSERT INTO grades VALUES ('1','38','80')
+
+INSERT INTO grades VALUES ('1','41','90')
+INSERT INTO grades VALUES ('1','42','100')
+INSERT INTO grades VALUES ('1','43','100')
+INSERT INTO grades VALUES ('1','45','100')
+INSERT INTO grades VALUES ('1','46','70')
+
+INSERT INTO grades VALUES ('1','48','70')
+INSERT INTO grades VALUES ('1','49','90')
+INSERT INTO grades VALUES ('1','50','60')
+INSERT INTO grades VALUES ('1','51','100')
+INSERT INTO grades VALUES ('1','52','100')
+
+INSERT INTO grades VALUES ('1','53','90')
+INSERT INTO grades VALUES ('1','54','90')
+INSERT INTO grades VALUES ('1','55','100')
+
+CREATE FUNCTION studentInformation (@idStudent INT)
+RETURNS TABLE
+AS
+RETURN(
+SELECT a.id, a.name, a.lastName, a.secondLastName, CONVERT(VARCHAR, age) + ' Años' AS age, c.career, (SELECT COUNT(idCourse) FROM curriculum p WHERE p.idCareer = a.idCareer
+GROUP BY idCareer) AS courses FROM student a
+INNER JOIN careers c ON c.id = a.idCareer
+WHERE a.id = @idStudent)
+
+-- Valor de courses --
+
+CREATE FUNCTION gradedCourses (@idStudent INT)
+RETURNS TABLE
+AS
+RETURN (
+SELECT course, grade FROM courses
+INNER JOIN grades ON grades.idCourse = courses.id
+WHERE idStudent = @idStudent
+)
+
+SELECT * FROM studentInformation(1);
+
+SELECT * FROM gradedCourses(1);
