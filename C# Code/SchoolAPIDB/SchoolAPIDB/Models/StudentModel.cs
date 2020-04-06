@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace SchoolAPIDB.Models
+﻿namespace SchoolAPIDB.Models
 {
     public class StudentModel
     {
@@ -11,8 +6,8 @@ namespace SchoolAPIDB.Models
         public string Name { get; set; }
         public string LastName { get; set; }
         public string SecondLastName { get; set; }
-        public string age { get; set; }
-        public string career { get; set; }
-        public int numberOfCourses { get; set; }
+        public string Age { get; set; }
+        public string Career { get; set; }
+        public int NumberOfCourses { get; set; }
     }
 }

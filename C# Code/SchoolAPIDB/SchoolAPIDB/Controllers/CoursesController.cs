@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace SchoolAPIDB.Controllers
 {
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class CoursesController : ApiController
     {
         List<CoursesModel> courses = new List<CoursesModel>();

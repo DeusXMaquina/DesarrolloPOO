@@ -1,16 +1,17 @@
 import React, { Component } from 'react'
-//import SchoolNavbar from '../../Components/Navbar/Navbar'
 import StudyTable from '../../Components/StudyTable/StudyTable'
 
 
 
-class Login extends Component {
+class Main extends Component {
 
   render() {
     return <div>
+        <div>
         <StudyTable/>
+        </div>
       </div>
   }
 }
 
-export default Login
+export default Main
