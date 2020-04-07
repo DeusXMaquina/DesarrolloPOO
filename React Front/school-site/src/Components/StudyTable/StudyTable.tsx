@@ -1,46 +1,45 @@
 import React, { Component } from 'react'
 import './studytable.css'
 //import * as cargaAcademica from './carga.json'
-import { IStudent, ICourses, studentProps } from './StudyTableInterfaces'
+import { IStudent, ICourses } from './StudyTableInterfaces'
 
 /*const capitalize = (word:string) => {
   return word.replace(word[0],word[0].toUpperCase())
 } */
-class StudyTable extends Component <{}, {Student:IStudent, Courses:ICourses[], matricula:number}> {
+class StudyTable extends Component <{matricula:number}> {
 
-  constructor (props:{}) {
-    super(props)
-    this.state = {
-      Student: {
-        Name: '',
-        LastName: '',
-        SecondLastName: '',
-        Age: '',
-        Career: '',
-        NumberOfCourses: ''
-      },
-      Courses: [],
-      matricula: 0
-    }
+
+  state: Readonly<{Student:IStudent, Courses:ICourses[]}> = {
+    Student: {
+      Name: '',
+      LastName: '',
+      SecondLastName: '',
+      Age: '',
+      Career: '',
+      NumberOfCourses: ''
+    },
+    Courses: []
   }
 
   UNSAFE_componentWillMount() {
-    fetch(`https://localhost:44374/api/Student/${this.state.matricula}`)
-    .then (res => res.json())
-    .then(data =>{
-      this.setState({Student : data[0]})
-    })
-    fetch(`https://localhost:44374/api/Courses/${this.state.matricula}`)
-    .then(res => res.json())
-    .then(data => {
-      this.setState({Courses : data})
-    })
+    if (this.props.matricula !== undefined){
+      fetch(`https://localhost:44374/api/Student/${this.props.matricula}`)
+      .then (res => res.json())
+      .then(data =>{
+        this.setState({Student : data[0]})
+      })
+      fetch(`https://localhost:44374/api/Courses/${this.props.matricula}`)
+      .then(res => res.json())
+      .then(data => {
+        this.setState({Courses : data})
+      })
+    }
   }
 
   render () {
     console.log('Alumno: ', this.state.Student)
-    console.log('Materias: ', this.state.Courses)
-    console.log('matricula: ',this.state.matricula)
+    console.log('Materias: ', this.state.Courses) 
+    console.log('Matricula: ', this.props.matricula)
 
     const loadCourses = () => {
       return this.state.Courses.map( (Course,index) => {
@@ -75,7 +74,7 @@ class StudyTable extends Component <{}, {Student:IStudent, Courses:ICourses[], m
     
     return <div>
       <div className='card border-primary mb-3'>
-        <div className='card-header'>{this.state.Student.carrera} {loadCareerInformation()}</div>
+        <div className='card-header'>{this.state.Student.career} {loadCareerInformation()}</div>
         <div className='card-body text-primary'>
           <h5 className='card-title'>{this.state.Student.Name + ' ' + this.state.Student.LastName}</h5>
           <div className='card-info'>{loadStudentInformation()}</div>

@@ -8,7 +8,7 @@ class Main extends Component {
   render() {
     return <div>
         <div>
-        <StudyTable/>
+        <StudyTable matricula={1} />
         </div>
       </div>
   }
