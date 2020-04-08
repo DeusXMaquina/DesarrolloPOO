@@ -18,3 +18,16 @@
 .flex-table {
   display: flex;
 }
+
+.card-component {
+  width: 820 px;
+  height: 820 px;
+  position: absolute;
+  left: 50%;
+  top:50%;
+  transform: translate(-50%, -50%);
+}
+
+.back-button {
+  position: center;
+}

@@ -9,7 +9,8 @@ import { IStudent, ICourses } from './StudyTableInterfaces'
 class StudyTable extends Component <{matricula:number}> {
 
 
-  state: Readonly<{Student:IStudent, Courses:ICourses[]}> = {
+  state: Readonly<{isValid:boolean, Student:IStudent, Courses:ICourses[]}> = {
+    isValid: false,
     Student: {
       Name: '',
       LastName: '',
@@ -22,6 +23,11 @@ class StudyTable extends Component <{matricula:number}> {
   }
 
   UNSAFE_componentWillMount() {
+    fetch(`https://localhost:44374/api/Validation/${this.props.matricula}`)
+    .then (res => res.json())
+    .then (data =>{
+      this.setState({isValid: data})
+    })
     if (this.props.matricula !== undefined){
       fetch(`https://localhost:44374/api/Student/${this.props.matricula}`)
       .then (res => res.json())
@@ -37,9 +43,6 @@ class StudyTable extends Component <{matricula:number}> {
   }
 
   render () {
-    console.log('Alumno: ', this.state.Student)
-    console.log('Materias: ', this.state.Courses) 
-    console.log('Matricula: ', this.props.matricula)
 
     const loadCourses = () => {
       return this.state.Courses.map( (Course,index) => {
@@ -68,11 +71,14 @@ class StudyTable extends Component <{matricula:number}> {
       })
       return <div>
         Promedio del Alumno: {(average/totalCourses).toFixed()}<br/>
-        Porcentaje de la Carrera: {(totalCourses/Number(this.state.Student.NumberOfCourses)*100).toFixed()} %
+        Porcentaje de la Carrera: {(totalCourses/Number(this.state.Student.NumberOfCourses)*100).toFixed()} % <br />
+        Tiempo estimado para terminar: {((Number(this.state.Student.NumberOfCourses) - totalCourses)/7).toFixed() } Periodos
       </div>
     }
-    
-    return <div>
+
+    const loadTable = () => {
+      return (
+        <div>
       <div className='card border-primary mb-3'>
         <div className='card-header'>{this.state.Student.career} {loadCareerInformation()}</div>
         <div className='card-body text-primary'>
@@ -86,6 +92,24 @@ class StudyTable extends Component <{matricula:number}> {
         </div>
     </div>
     </div>
+      )
+    }
+
+    const noInformation = () => {
+      return (
+        <div className='card-component card border-primary mb-3'>
+          <div className='card-body text-primary'>
+            <h3>Matricula Invalida</h3>
+              <div className='form-now'>
+                <div className='col'>
+                </div>
+              </div>
+              <a href='/' className='btn back-button btn-outline-primary lg-btn' >Volver a Intentar</a>
+          </div>
+        </div>)
+    }
+    
+    return this.state.isValid ? loadTable() : noInformation()
   }
 }
 
