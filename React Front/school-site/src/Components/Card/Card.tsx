@@ -15,6 +15,9 @@ class Card extends Component <{}, {matricula:number}>{
       if (matricula.value === null){
         matricula.value = 'Valor incorrecto'
       }
+      else if (/[A-Z]|[a-z]/.test(matricula.value)){
+        this.setState({matricula: 0})
+      }
       else {
         this.setState({matricula: Number(matricula.value)})
       }
@@ -22,7 +25,6 @@ class Card extends Component <{}, {matricula:number}>{
 
     return <Router>
     <div className='card-component card border-primary mb-3'>
-      <div className='card-header'>Login Info</div>
       <div className='card-body text-primary'>
         <form>
           <div className='form-now'>
@@ -30,12 +32,12 @@ class Card extends Component <{}, {matricula:number}>{
               <input id='miMatricula' type='text' className='form-control' placeholder='Matricula'></input>
             </div>
           </div>
-          <Link className='btn btn-outline-primary lg-btn' type='button' onClick={obtenerMatricula} to='/StudentInformation'>Search</Link>
+          <Link className='btn btn-outline-primary lg-btn' type='button' onClick={obtenerMatricula} to='/StudentInformation/'>Search</Link>
         </form>
       </div>
     </div>
     <Switch>
-      <Route path='/StudentInformation'>
+      <Route path='/StudentInformation/'>
         <StudentInformation matricula ={this.state.matricula}  />
       </Route>
     </Switch>

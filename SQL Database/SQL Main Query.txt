@@ -167,9 +167,9 @@ INSERT INTO curriculum VALUES ('6', '58')
 INSERT INTO curriculum VALUES ('6', '59')
 
 
---student------------------------------------------------------------------------
+--students------------------------------------------------------------------------
 
-CREATE TABLE student (
+CREATE TABLE students (
     id INT NOT NULL PRIMARY KEY IDENTITY (1,1),
     name VARCHAR (255) NOT NULL,
     lastName VARCHAR (255) NOT NULL,
@@ -178,17 +178,17 @@ CREATE TABLE student (
     idCareer INT NOT NULL FOREIGN KEY REFERENCES careers (id)
 )
 
-INSERT INTO student VALUES ('Pablo','Altamirano','Arce',29,6)
-INSERT INTO student VALUES ('Pedro','Perez','Prado',31,6)
-INSERT INTO student VALUES ('Alejandra', 'Allar', 'Gonzalez', 29, 6)
-INSERT INTO student VALUES ('Sofia', 'Ruiz', 'Sahagun', 31, 6)
-INSERT INTO student VALUES ('Carlos', 'Altamirano', 'Arce', 27, 1)
+INSERT INTO students VALUES ('Pablo','Altamirano','Arce',29,6)
+INSERT INTO students VALUES ('Pedro','Perez','Prado',31,6)
+INSERT INTO students VALUES ('Alejandra', 'Allar', 'Gonzalez', 29, 6)
+INSERT INTO students VALUES ('Sofia', 'Ruiz', 'Sahagun', 31, 6)
+INSERT INTO students VALUES ('Carlos', 'Altamirano', 'Arce', 27, 1)
 
 --grades-----------------------------------------------------------------
 
 CREATE TABLE grades (
     id INT NOT NULL PRIMARY KEY IDENTITY (1,1),
-    idStudent INT NOT NULL FOREIGN KEY REFERENCES student (id),
+    idStudent INT NOT NULL FOREIGN KEY REFERENCES students (id),
     idCourse INT NOT NULL FOREIGN KEY REFERENCES courses (id),
     grade INT NOT NULL
 )
@@ -238,7 +238,7 @@ RETURNS TABLE
 AS
 RETURN(
 SELECT a.id, a.name, a.lastName, a.secondLastName, CONVERT(VARCHAR, age) + ' Años' AS age, c.career, (SELECT COUNT(idCourse) FROM curriculum p WHERE p.idCareer = a.idCareer
-GROUP BY idCareer) AS courses FROM student a
+GROUP BY idCareer) AS courses FROM students a
 INNER JOIN careers c ON c.id = a.idCareer
 WHERE a.id = @idStudent)
 
@@ -253,6 +253,18 @@ INNER JOIN grades ON grades.idCourse = courses.id
 WHERE idStudent = @idStudent
 )
 
+CREATE FUNCTION validUser(@IdStudent INT)
+RETURNS BIT
+AS
+BEGIN
+DECLARE @isValid BIT
+SELECT @isValid = COUNT(id) FROM students WHERE id = @IdStudent
+RETURN @isValid
+END
+
+
 SELECT * FROM studentInformation(1);
 
 SELECT * FROM gradedCourses(1);
+
+SELECT dbo.ValidUser(1) AS Valid

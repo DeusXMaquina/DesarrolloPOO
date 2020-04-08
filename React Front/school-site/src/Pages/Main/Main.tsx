@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import StudyTable from '../../Components/StudyTable/StudyTable'
 
 
 
@@ -7,9 +6,7 @@ class Main extends Component {
 
   render() {
     return <div>
-        <div>
-        <StudyTable matricula={1} />
-        </div>
+        <h1>Welcome</h1>
       </div>
   }
 }
