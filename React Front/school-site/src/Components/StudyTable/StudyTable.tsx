@@ -1,11 +1,7 @@
 import React, { Component } from 'react'
 import './studytable.css'
-//import * as cargaAcademica from './carga.json'
 import { IStudent, ICourses } from './StudyTableInterfaces'
 
-/*const capitalize = (word:string) => {
-  return word.replace(word[0],word[0].toUpperCase())
-} */
 class StudyTable extends Component <{matricula:number}> {
 
 
@@ -47,9 +43,9 @@ class StudyTable extends Component <{matricula:number}> {
     const loadCourses = () => {
       return this.state.Courses.map( (Course,index) => {
         let color = {backgroundColor: Course.Grade >= 80 ? 'green' : Course.Grade >= 60 ? '#F3C702' : 'red'}
-        return <li key={index} className='subject-row list-group-item d-flex justify-content between align-items-center'><span>{Course.Course}</span>
-      <div className='badge badge-primary badge-pill school-badge' style={color}>{Course.Grade}</div>
-      </li>
+          return <li key={index} className='subject-row list-group-item d-flex justify-content between align-items-center'><span>{Course.Course}</span>
+          <div className='badge badge-primary badge-pill school-badge' style={color}>{Course.Grade}</div>
+          </li>
       })
     }
 
