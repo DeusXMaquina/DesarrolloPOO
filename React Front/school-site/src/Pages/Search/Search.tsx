@@ -4,7 +4,7 @@ import { BrowserRouter as Router } from 'react-router-dom'
 
 
 
-class Login extends Component {
+class Search extends Component {
   state = {}
 
   render() {
@@ -16,4 +16,4 @@ class Login extends Component {
   }
 }
 
-export default Login
+export default Search
