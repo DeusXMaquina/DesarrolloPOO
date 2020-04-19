@@ -1,4 +1,6 @@
-﻿using SchoolAPIDB.Models;
+﻿using ProyectoBaseDatos.Models;
+using SchoolAPIDB.Models;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Web.Http;
@@ -9,31 +11,43 @@ namespace SchoolAPIDB.Controllers
     [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class CoursesController : ApiController
     {
-        List<CoursesModel> courses = new List<CoursesModel>();
-        ConnectionString conString = new ConnectionString();
+        private Connection connection { get; set; }
+        List<CoursesModel> list = new List<CoursesModel>();
+
+        public CoursesController() 
+        {
+            connection = new Connection();
+        }
+
         // GET: api/Courses/5
         public List<CoursesModel> Get(int id)
         {
-            using (SqlConnection connection = new SqlConnection(conString.connectionString))
-            using (SqlCommand cmd = new SqlCommand($"SELECT course, grade FROM gradedCourses({id})", connection))
+            string command = "dbo.gradedCourses";
+            SqlParameter[] parameters = new SqlParameter[1]
             {
-                connection.Open();
-                using (SqlDataReader reader = cmd.ExecuteReader())
-                {
-                    if (reader.HasRows) 
-                    {
-                        while (reader.Read())
-                        {
-                            courses.Add(new CoursesModel
-                            {
-                                Course = reader.GetString(reader.GetOrdinal("course")),
-                                Grade = reader.GetInt32(reader.GetOrdinal("grade"))
-                            });
-                        }
-                    }
-                }
-            }
+                new SqlParameter("@idStudent", id)
+            };
+
+            var data = connection.ReadStoreProcedure(command, parameters);
+            var courses = new List<CoursesModel>();
+
+            if (data.Count == 0) 
+            {
                 return courses;
+            }
+
+            for (int index = 0; index < data.Count; index++)
+            {
+                var CoursesModel = new CoursesModel();
+
+                var columns = data[index].Rows;
+
+                CoursesModel.Course = columns[0];
+                CoursesModel.Grade = Convert.ToInt32(columns[1]);
+
+                courses.Add(CoursesModel);
+            }
+            return courses;
         }
     }
 }

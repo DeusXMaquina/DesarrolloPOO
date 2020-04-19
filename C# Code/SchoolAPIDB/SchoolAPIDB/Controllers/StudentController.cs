@@ -1,45 +1,50 @@
-﻿using System.Collections.Generic;
+﻿using ProyectoBaseDatos.Models;
+using SchoolAPIDB.Models;
+using System;
+using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Linq;
 using System.Web.Http;
 using System.Web.Http.Cors;
-using SchoolAPIDB.Models;
 
 namespace SchoolAPIDB.Controllers
 {
     [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class StudentController : ApiController
     {
-        List<StudentModel> student = new List<StudentModel>();
-        ConnectionString conString = new ConnectionString();
-        // GET: api/Student/5
-        public List<StudentModel> Get(int id)
+        private Connection connection { get; set; }
+        List<StudentModel> list = new List<StudentModel>();
+        public StudentController()
         {
-            using (SqlConnection connection = new SqlConnection(conString.connectionString))
-            using (SqlCommand cmd = new SqlCommand($"SELECT id, name, lastname, secondlastname, age, career, courses FROM studentInformation({id})", connection)) 
+            connection = new Connection();
+        }
+
+        // GET: api/Test/5
+        public StudentModel Get(int id)
+        {
+            string command = "dbo.studentInformation";
+            SqlParameter[] parameters = new SqlParameter[1]
             {
-                connection.Open();
-                using (SqlDataReader reader = cmd.ExecuteReader()) 
-                {
-                    if (reader.HasRows) 
-                    {
-                        while (reader.Read())
-                        {
-                            student.Add(new StudentModel
-                            {
-                                Id = reader.GetInt32(reader.GetOrdinal("id")),
-                                Name = reader.GetString(reader.GetOrdinal("name")),
-                                LastName = reader.GetString(reader.GetOrdinal("lastname")),
-                                SecondLastName = reader.GetString(reader.GetOrdinal("secondlastname")),
-                                Age = reader.GetString(reader.GetOrdinal("age")),
-                                Career = reader.GetString(reader.GetOrdinal("career")),
-                                NumberOfCourses = reader.GetInt32(reader.GetOrdinal("courses"))
-                            });
-                        }
-                    }
-                }
-                connection.Close();
+                new SqlParameter ("@idStudent", id)
+            };
+
+            var data = connection.ReadStoreProcedure(command, parameters);
+            var studentModel = new StudentModel();
+            if (data.Count == 0)
+            {
+                return studentModel;
             }
-            return student;
+            var column = data[0].Rows;
+
+            studentModel.Id = Convert.ToInt32(column[0]);
+            studentModel.Name = column[1];
+            studentModel.LastName = column[2];
+            studentModel.SecondLastName = column[3];
+            studentModel.Age = column[4];
+            studentModel.Career = column[5];
+            studentModel.NumberOfCourses = Convert.ToInt32(column[6]);
+
+            return studentModel;
         }
     }
 }

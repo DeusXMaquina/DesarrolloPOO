@@ -28,12 +28,12 @@ class StudyTable extends Component <{matricula:number}> {
       fetch(`https://localhost:44374/api/Student/${this.props.matricula}`)
       .then (res => res.json())
       .then(data =>{
-        this.setState({Student : data[0]})
+        this.setState({Student: data})
       })
       fetch(`https://localhost:44374/api/Courses/${this.props.matricula}`)
       .then(res => res.json())
       .then(data => {
-        this.setState({Courses : data})
+        this.setState({Courses: data})
       })
     }
   }
